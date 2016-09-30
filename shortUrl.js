@@ -6,8 +6,11 @@ var connection = mongoose.createConnection('mongodb://localhost:27017/urls')
 autoIncrement.initialize(connection)
 
 var ShortUrl = new Schema(
-  { fullUrl: String }
+  {
+    full: String,
+    short: Number
+   }
 )
 
-ShortUrl.plugin(autoIncrement.plugin, 'ShortUrl')
+ShortUrl.plugin(autoIncrement.plugin, { model: 'ShortUrl', field: 'short' })
 module.exports = mongoose.model('ShortUrl', ShortUrl);
