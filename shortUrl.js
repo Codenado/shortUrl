@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment')
 
-var connection = mongoose.createConnection(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/urls')
-autoIncrement.initialize(connection)
+// var connection = mongoose.createConnection(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/urls')
+// autoIncrement.initialize(connection)
 
 var ShortUrl = new Schema(
   {
@@ -12,5 +12,5 @@ var ShortUrl = new Schema(
    }
 )
 
-ShortUrl.plugin(autoIncrement.plugin, { model: 'ShortUrl', field: 'short' })
+// ShortUrl.plugin(autoIncrement.plugin, { model: 'ShortUrl', field: 'short' })
 module.exports = mongoose.model('ShortUrl', ShortUrl);
