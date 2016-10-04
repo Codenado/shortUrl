@@ -5,18 +5,18 @@ var express = require('express'),
 
 var app = express()
 app.set('port', (process.env.PORT || 5000));
-// var connection = mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/urls')
+var connection = mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/urls')
 
 app.get('/n/:url', function(req, res){
-  // var newDoc = new shortUrl({ 'full': req.params.url });
-  //                  newDoc.save(function (err, doc) {
-  //                      if (err) { throw err; }
-  //                       var url = {
-  //                         full_Url: doc.full,
-  //                         short_Url: doc.short
-  //                       }
-  //                      res.json(url);
-  //                  });
+  var newDoc = new shortUrl({ 'full': req.params.url });
+                   newDoc.save(function (err, doc) {
+                       if (err) { throw err; }
+                        var url = {
+                          full_Url: doc.full,
+                          short_Url: doc.short
+                        }
+                       res.json(url);
+                   });
 })
 
 app.get('/', function(req, res){
